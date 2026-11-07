@@ -14,5 +14,5 @@ public interface ProductRepository {
     Optional<Product> findById(UUID id);
 
     List<Product> findAll();
-    boolean existsById(Sku sku);
+    boolean existsBySku(Sku sku);
 }
