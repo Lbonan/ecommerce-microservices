@@ -53,6 +53,19 @@ flowchart LR
 
 ---
 
+
+### 🔌 Portas
+
+| Serviço | Porta |
+|---------|-------|
+| 🧭 Service Discovery (Eureka) | `8761` |
+| 🚪 API Gateway | `8080` |
+| 📦 Product Service | `8081` |
+| 🏬 Inventory Service | `8082` |
+| 💰 Sales Service | `8083` |
+
+---
+
 ## 🧰 Tecnologias
 
 | Categoria | Tecnologia |
@@ -138,8 +151,14 @@ cd service-discovery
 cd api-gateway
 ./mvnw spring-boot:run
 
-# 3️⃣ Demais serviços
-cd product-service
+# 3️⃣ Demais serviços (um terminal para cada)
+cd product-service    # http://localhost:8081
+./mvnw spring-boot:run
+
+cd inventory-service  # http://localhost:8082
+./mvnw spring-boot:run
+
+cd sales-service      # http://localhost:8083
 ./mvnw spring-boot:run
 ```
 
