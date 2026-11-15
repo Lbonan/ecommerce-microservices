@@ -1,0 +1,25 @@
+services:
+  product-db:
+    image: postgres:17
+    container_name: ecommerce-product-db
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: ${PRODUCT_DB_NAME:-product_db}
+      POSTGRES_USER: ${PRODUCT_DB_USER:-product_user}
+      POSTGRES_PASSWORD: ${PRODUCT_DB_PASSWORD}
+
+    ports:
+      - "${PRODUCT_DB_PORT:-5433}:5432"
+
+    volumes:
+      - product-data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  product-data:
