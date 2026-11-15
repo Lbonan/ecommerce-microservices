@@ -68,6 +68,32 @@ public class Product {
         );
     }
 
+    public static Product restore(
+            UUID id,
+            String name,
+            String description,
+            Sku sku,
+            BigDecimal price,
+            boolean active,
+            Instant createdAt,
+            Instant updatedAt
+    ) {
+        if (id == null || sku == null || createdAt == null || updatedAt == null) {
+            throw new InvalidProductNotException("Produto inválido");
+        }
+
+        return new Product(
+                id,
+                validateName(name),
+                normalizedDescription(description),
+                sku,
+                validatePrice(price),
+                active,
+                createdAt,
+                updatedAt
+        );
+    }
+
     public void updateDetails(String name, String description){
         String validatedName = validateName(name);
         String normalizedDescription = normalizedDescription(description);
