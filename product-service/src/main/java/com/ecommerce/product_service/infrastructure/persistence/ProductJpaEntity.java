@@ -15,7 +15,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_products",
+@Table(name = "products",
        uniqueConstraints = {
         @UniqueConstraint(name = "uk_products_sku", columnNames = "sku")
        }
@@ -27,22 +27,22 @@ public class ProductJpaEntity {
     @Column(nullable = false, length = 150)
     private String name;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(length = 2000)
     private String description;
-
-    @Column(nullable = false, length = 50)
-    private String Sku;
 
     @Column(nullable = false, precision = 12, scale = 2)
     private BigDecimal price;
 
+    @Column(nullable = false, length = 50)
+    private String sku;
+
     @Column(nullable = false)
     private boolean active;
 
-    @Column(nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
-    @Column(nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
     protected ProductJpaEntity() {}
@@ -60,7 +60,7 @@ public class ProductJpaEntity {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.Sku = sku;
+        this.sku = sku;
         this.price = price;
         this.active = active;
         this.createdAt = createdAt;
